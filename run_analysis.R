@@ -26,8 +26,8 @@ colnames(data) <- c("Subject", "Activities", featureNames)
 # data set with the average of each variable for each activity and each subject
 # first change the Subject and Adtivities variables into factors
 activitylabels <- read.table("activity_labels.txt")
-data$Subject <- factor(data$Subject, labels = activitylabels[,2], levels = activitylabels[,1])
-data$Activities <- as.factor(data$Activities)
+data$Subject <- as.factor(data$Subject)
+data$Activities <- factor(data$Activities, labels = activitylabels[,2], levels = activitylabels[,1])
 
 data.melted <- melt(data, id = c("Subject", "Activities"))
 data.mean <- dcast(data.melted, Subject + Activities ~ variable, mean)
